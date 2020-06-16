@@ -1,0 +1,41 @@
+<!-- Credits 
+https://davidshimjs.github.io/qrcodejs/ for the QR Code Generator and parts of the HTML
+Steve Griffith YouTube video for a detailed explanation on using David's QR Code: https://youtu.be/xeLsiAj3fI8 
+http://www.developphp.com/video/JavaScript/Partial-Print-Document-Tutorial-HTML-div-Content for code to print HTML 
+https://www.w3schools.com/js/js_random.asp for Random Number Generator
+https://www.geeksforgeeks.org/check-a-number-is-prime-or-not-using-javascript/ for determining a Prime Number Function
+https://tecadmin.net/get-current-date-time-javascript/ for Javascript to get time and date
+https://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_hover for Hoverable Button
+https://jsfiddle.net/jStefano/gm7boy2p/ for how to use HmacSHA256 -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Reservation QR Codes</title>
+        <meta name="viewport" content="width=device-width">
+        <script src="qrcode1.js"></script>
+        <script src="qr.js"></script>
+        <link rel="stylesheet" href="main.css">
+    </head>
+
+    <body>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha256.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64-min.js"></script>
+
+        <main>
+            <div id="output">
+                <h1>Reservation QR Code</h1><img class="logo" src="Parkway Logo.png">
+                <center>
+                    <div id="qroutput"></div>
+                </center>
+            </div>
+
+            <br>
+            <center><button class="button" onclick="printContent('output')">Print QR Code</button></center>
+        </main> 
+        
+    </body>
+
+</html>
