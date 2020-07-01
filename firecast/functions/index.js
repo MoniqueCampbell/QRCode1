@@ -1,4 +1,18 @@
-export const qrCode = functions.https.onRequest((req, res) => {
+// const functions = require('firebase-functions');
+
+// // Create and Deploy Your First Cloud Functions
+// // https://firebase.google.com/docs/functions/write-firebase-functions
+
+// exports.helloWorld = functions.https.onRequest((request, response) => {
+	
+// 		response.send("Hello from Firebase!");
+// 		response.send(request);
+// 		response.send(response);
+	
+// });
+
+
+exports.qrCode = functions.https.onRequest((req, res) => {
 	cors(req, res, () => {
 		const name = req.body.name;
 
@@ -15,8 +29,14 @@ export const qrCode = functions.https.onRequest((req, res) => {
 		//Generates a random 6 digit number between 100000 and 999999 (both numbers inclusively)
         function getrandNum(min,max){
             randnum = Math.floor(Math.random() * (max - min +1))+min;
-            isPrime(randnum)
+            if isPrime(randnum){
+            	return (randnum);
+            }
+            else{
+            	return (getrandNum(min,max));
+            }
         }
+            
 
         //Checks if the given number is prime
         function isPrime(num){
@@ -25,8 +45,10 @@ export const qrCode = functions.https.onRequest((req, res) => {
 
                 //Calls function getrandNum if a factor is found
                 if (randnum % i == 0){
-                    getrandNum(100000,999999);
-                    flag = false;
+                    return true
+                }
+                else{
+                	return false
                 }
             }     
         }
@@ -62,8 +84,8 @@ export const qrCode = functions.https.onRequest((req, res) => {
         });
 
         function getDataUrl(img) {
-		    // Create canvas
-		    const canvas = document.createElement('canvas');
+		    // Get canva
+		    const canvas = document.querySelector('#myCanvas');
 		    const ctx = canvas.getContext('2d');
 
 		    // Set width and height
@@ -79,7 +101,8 @@ export const qrCode = functions.https.onRequest((req, res) => {
 		const img = document.querySelector('#qroutput');
 		img.addEventListener('load', function (event) {
 		 	const dataUrl = getDataUrl(event.currentTarget);
-		    return res.send(JSON.stringify(dataUrl));
+            return res.send((dataUrl);
+		    //return res.send(JSON.stringify(dataUrl));
 		});
 
 	});

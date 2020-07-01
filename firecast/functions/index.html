@@ -28,9 +28,25 @@ https://jsfiddle.net/jStefano/gm7boy2p/ for how to use HmacSHA256 -->
             <div id="output">
                 <h1>Reservation QR Code</h1><img class="logo" src="Parkway Logo.png">
                 <center>
-                    <div id="qroutput"></div>
+                    <div id="qroutput">
+                        <canvas id="myCanvas"></canvas>
+                    </div>
                 </center>
             </div>
+
+            <script>
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.querySelector('#myCanvas').innerHTML =
+                        this.responseText;
+                    }
+                };
+                //Remember the payload
+                //Add the URL below
+                xhttp.open("GET", "URL", true);
+                xhttp.send();
+            </script>
 
             <br>
             <center><button class="button" onclick="printContent('output')">Print QR Code</button></center>
